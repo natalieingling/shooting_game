@@ -1,0 +1,64 @@
+class Aliens {
+  int numOfA= 10;
+
+  int alienPositionX;
+  int alienPositionY;
+  int alienSize;
+
+  float alienPX;
+  float alienPY;
+
+  float gridLineW= 700/20;
+  float gridLineH= 500/16;
+
+  float speed ;
+
+  Aliens() {
+
+    alienPositionX=(int( random(50, 650)));
+    alienPositionY =(int( random(10, 200)));
+
+    alienSize = 30;
+
+    alienPX = snapToGrid(alienPositionX);
+
+
+    speed = 2;
+  }
+  void moveAlien() {
+    PVector alien = new PVector (alienPX, alienPositionY);
+    stroke(150);
+    fill(100);
+    ellipse(alien.x, alien.y+5, alienSize+20, 15);
+
+    fill(50, 50, 150);
+    ellipse(alien.x, alien.y, alienSize, 10); 
+
+    alienPX = alienPX + speed ;
+
+    float testMove = random(0, 1);
+
+    if (testMove < 0.005) {
+      speed = -speed;
+    }
+
+    if (alienPX < alienSize/2 || alienPX > 700 - alienSize/2) {
+      speed = -speed;
+    }
+  }
+  boolean shot ( PVector ship) {
+    float bulletX = ship.x;
+    float bulletY = ship.y;
+    if ( bulletX == alienPX && bulletY == alienPY) {
+      alien.remove(0);
+      return true ;
+    } else {
+      return false;
+    }
+  }
+
+  float snapToGrid (int d) {
+    float snap = 1.0/gridLineW;
+    return round(d*snap)*gridLineW;
+  }
+}
