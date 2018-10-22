@@ -1,4 +1,21 @@
- grid1 = new Grid();
+Grid grid1;
+Aliens alien1;
+Ship ship1;
+Bullet bullet;
+
+ArrayList<Aliens> alien;
+
+
+
+int numOfA = 10;
+
+boolean [] keys = new boolean[128];
+
+void setup() {
+  size(700, 500);
+  frameRate(60);
+
+grid1 = new Grid();
   ship1 = new Ship();
   alien1 = new Aliens();
   alien = new ArrayList <Aliens>();
