@@ -1,0 +1,90 @@
+class Ship {
+
+  int pointerX;
+  int pointerY;
+  int pointerX1;
+  int pointerY1;
+  int pointerX2;
+  int pointerY2;
+
+  int body1;
+  int body2;
+
+  float gridLineW= 700/20;
+  float gridLineH= 500/16;
+
+  PVector ship;
+
+  float speed =8;
+
+  float y ;
+
+  float x;
+
+  Ship() {
+    pointerX = (int(random(0, 700)));
+    pointerY= 500 -40;
+    pointerX1= pointerX+10;
+    pointerY1 = 500 -30;
+    pointerX2= pointerX-10;
+    pointerY2= 500 -30;
+
+    y = pointerY;
+
+    body1 = 35;
+    body2 = 70;
+    x = snapToGrid(pointerX);
+  }
+
+  void createShip() {
+
+    noStroke( ); 
+    x = snapToGrid(pointerX);
+
+    fill(200, 20, 0);
+    rect(x+body1-5, 480, 5, 20);
+    rect(x-body1, 480, 5, 20);
+    fill(90, 150, 190);
+    triangle(x, 450, x+body1, 500, x-body1, 500);
+    fill(195, 100, 100);
+    triangle(x, pointerY, x+10, pointerY1, x-10, pointerY2);
+    strokeWeight(2);
+    stroke(200, 190, 80);
+    line(x+12, pointerY+15, x-12, pointerY+15);
+  }
+
+  void move() {
+
+    if (keys['a']==true) {
+      pointerX= pointerX-40;
+      pointerX1= pointerX1-40;
+      pointerX2=pointerX2-40;
+    }
+    if (keys['d'] == true) {
+      pointerX= pointerX+40;
+      pointerX1= pointerX1+40;
+      pointerX2=pointerX2+40;
+    }
+  }
+
+
+
+  //what is this  
+  /* boolean shot (PVector alien) {
+   
+   float bulletX = pointerX;
+   float bulletY = pointerY;
+   if ( bulletX == alien.x && bulletY == alien.y) {
+   stroke(255, 0, 0);
+   ellipse(10, 10, 10, 10);
+   return true;
+   } else {
+   return false;
+   }
+   }*/
+
+  float snapToGrid (int d) {
+    float snap = 1.0/gridLineW;
+    return round(d*snap)*gridLineW;
+  }
+}
