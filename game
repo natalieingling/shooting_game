@@ -1,0 +1,30 @@
+ grid1 = new Grid();
+  ship1 = new Ship();
+  alien1 = new Aliens();
+  alien = new ArrayList <Aliens>();
+
+  for (int i = 0; i < numOfA; i ++) {
+    alien.add(new Aliens());
+  }
+}
+
+void draw() {
+  background(0);
+  grid1.drawGrid();
+  ship1.createShip();
+  ship1.shoot();
+
+  for (int i = 0; i<numOfA; i++) {
+    alien.get(i).moveAlien();
+  }
+}
+void keyPressed() {
+  keys[key]= true;
+  ship1.createShip();
+  ship1.move();
+  ship1.shoot();
+}
+
+void keyReleased() {
+  keys[key] = false;
+}
