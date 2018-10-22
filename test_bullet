@@ -1,0 +1,36 @@
+class Bullet {
+
+  float gridLineW= 700/20;
+  float gridLineH= 500/16;
+
+  float bulletX;
+  int bulletY;
+
+  int speed ;
+
+  Bullet() {
+    bulletX = snapToGrid(ship1.pointerX);
+    bulletY = ship1.pointerY;
+    speed = 12;
+  }
+
+  void createBullet () {
+    bulletX = snapToGrid(ship1.pointerX);
+    stroke(255, 0, 0);
+
+    if (keys['w'] == true) {
+      line(bulletX, bulletY, bulletX, bulletY-10);
+      bulletY = bulletY - speed;
+      if ( bulletY <0 ) {
+        bulletY =+450;
+      }
+    }
+  }
+
+
+
+  float snapToGrid (int d) {
+    float snap = 1.0/gridLineW;
+    return round(d*snap)*gridLineW;
+  }
+}
